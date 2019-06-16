@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 
 export const app = express()
+const router = express.Router()
 
 app.disable('x-powered-by')
 
@@ -16,6 +17,12 @@ const log = (req, res, next) => {
   console.log('we are logging, yaay!')
   next()
 }
+
+router.get('/me', (req, res) => {
+  res.send({ me: 'hello, I am Bijan' })
+})
+
+app.use('/api', router)
 
 app.get('/', log, (req, res) => {
   res.send({ message: 'hello' })
