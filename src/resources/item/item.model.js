@@ -18,4 +18,6 @@ const itemSchema = new mongoose.Schema({
   list: { ref: 'list', required: true, type: mongoose.SchemaTypes.ObjectId }
   //   { timestamps: true }
 })
+
+itemSchema.index({ list: 1, name: 1 }, { unique: true })
 export const Item = mongoose.model('item', itemSchema)
